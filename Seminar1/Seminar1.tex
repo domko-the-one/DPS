@@ -1,0 +1,51 @@
+\documentclass[8pt,letterpaper]{article}
+\usepackage[left=12mm, top=0.5in, bottom=0.5in]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+\title{Seminar 1 - Processing of images}
+\author{Domen Kuhar}
+\maketitle
+	
+\section{Abstract}
+In this report I am going to explain my choice of seminar and introduce the task. I am also going to discuss the methods used and the results that I arrived at.
+At the end I sum up my findings.
+
+
+\section{Introduction}
+I have decided to do Processing of images for my first Seminar, as I am quite interested in the happenings behind the curtain when it comes to image processing.
+I have been using image processing software for many years already in the form of PhotoShop, or many of it's open-source counterparts.\\
+The task required me to; in the first part sharpen images using a smoothing filter, and in the second part sharpen images using second-order derivatives, obtained via Laplacian masks.
+
+
+\section{Methods}
+I completed the Task in MatLab, as we already used it during our exercises, where I learned many tips. The task is written as a function which requires the image and the factor of highboost filtering.\\ \\
+Part 1:\\
+To use the smoothing I needed to create a kernel; a 3x3 matrix with \(\frac{1}{9}\) in every space. I blur the original image using the kernel with imfilter function. I then subtract the blurred image from the original.
+The result is added to the original image as many times as specified. This is called highboost filtering.\\ \\
+Part 2:\\
+In this part I used Laplacian masks for second-order derivative image sharpening. I used two matrices to get Laplacian masks:
+
+$\begin{bmatrix}
+	0 & 1 & 0\\
+	1 & -4 & 1\\
+	0 & 1 & 0
+\end{bmatrix}$
+and
+$\begin{bmatrix}
+1 & 1 & 1\\
+1 & -8 & 1\\
+1 & 1 & 1
+\end{bmatrix}$ \\
+
+I produce second-order derivative images by using convolution on these matrices and the original image. To get the final sharpened images I subtract the gotten second-order derivatives from the original.
+
+\section{Results}
+When using the highboost filter sharpening worked better on images with larger contrasts between colors. But sharpening using second-order derivatives works better overall. The difference between the two matrices is also visible, as one uses -4 an the other uses -8 in the center, thus producing sharper images.
+
+\section{Discussion}
+At the end of this task I feel like I now understand how image sharpening really works. I would however like to find out more about other sharpening filters, and image processing in general.
+	
+	
+	
+\end{document}
